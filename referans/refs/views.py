@@ -4,6 +4,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
+
 def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+    return HttpResponse("<h3> Hello, world. </h3> "
+                        "<br>  You're at the polls index."
+                        "<hr> " )
 
