@@ -3,12 +3,12 @@ from flask import Flask, jsonify, render_template
 app = Flask(__name__)
 
 
-@app.route("/")
-def hello():
-    return "<h3> Hello World! </h3>"
+# @app.route("/")
+# def hello():
+#     return "<h3> Hello World! </h3>"
 
 
-@app.route('/districts')
+@app.route('/')
 def getDistricts():
     district = {"adi": "ankara"}
     #return jsonify({"adi": "ankara"})
