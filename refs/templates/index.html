@@ -58,7 +58,7 @@
             <div class="container">
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="districtinf" role="tabpanel"
-                        aria-labelledby="districtinf-tab">İl verileri burada olacak</div>
+                        aria-labelledby="districtinf-tab"><canvas id="myChart" width="400" height="150"></canvas></div>
                     <div class="tab-pane fade" id="cityinf" role="tabpanel" aria-labelledby="cityinf-tab">İlçe verileri
                         burada olacak</div>
                     <div class="tab-pane fade" id="terraininf" role="tabpanel" aria-labelledby="terraininf-tab">İlçe
@@ -80,6 +80,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js" integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
     <!-- app scripts -->
     <script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/demo_data.js') }}"></script>
