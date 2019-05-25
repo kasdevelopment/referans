@@ -17,7 +17,20 @@ $(document).ready(function(){
                     id: data[0], 
                     district_name: data[1], 
                     city: data[2],
-                    terrain: data[3]
+                    terrain: data[3],
+                    mer_gun_sayac_okuma_adedi: data[4],
+                    mer_en_okuma_personel_sayisi: data[5],
+                    kir_gun_sayac_okuma_adedi: data[6],
+                    kir_en_okuma_personel_sayisi: data[7],
+                    mer_saha_gunluk_osos_okuma_adedi: data[8],
+                    mer_saha_osos_en_okuma_personel_sayisi: data[9],
+                    kir_saha_gunluk_osos_okuma_adedi: data[10],
+                    kir_saha_osos_en_okuma_personel_sayisi: data[11],
+                    mer_en_okuma_personel_sayisi_2: data[12],
+                    kir_en_okuma_personel_sayisi_2: data[13],
+                    top_en_okuma_personel_sayisi: data[14],
+                    top_en_okuma_arac_sayisi: data[15],
+                    top_en_okuma_akaryakit_iht_lt: data[16]
                 }
             );
     });
