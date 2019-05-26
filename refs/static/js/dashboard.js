@@ -4,43 +4,22 @@ class District {
         this.level = level;
         this.district = district;
         this.data = dataSetArr.filter(data => data.district_name === district);
-        this.nums = [];
-        this.labels = [];
-        
     }
 
     calculateData(){
+        let labels =[];
+        let nums = [];
         this.data.forEach(function(elem){
-        let index = this.labels.indexOf(elem.city);
+        let index = labels.indexOf(elem.city);
         if(index === -1){
-            this.labels.push(elem.city);
-            this.nums.push(elem.mer_gun_sayac_okuma_adedi);
+            labels.push(elem.city);
+            nums.push(parseFloat(elem.mer_gun_sayac_okuma_adedi));
         } else {
-            this.nums[index] += elem.mer_gun_sayac_okuma_adedi;
+            nums[index] = parseFloat(nums[index]) + parseFloat(elem.mer_gun_sayac_okuma_adedi);
         }
     });
+        return [labels, nums];
     }
     // Adding a method to the constructor
-    createChart() {
-    var myChart = new Chart(this.ctx, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: name,
-                data: data,
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
-    }
+    
 }

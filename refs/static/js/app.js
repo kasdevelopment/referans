@@ -1,12 +1,8 @@
 var dataObj = [];
 var allDist = [];
+var districtChart = undefined;
 
 $(document).ready(function(){
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var data = [5,27,1];
-    var labels = ["Ankara", "Eskişehir", "Zonguldak"];
-    var name = "örnek"
-    createDummyChart(ctx,data,labels,name);
     demoData.forEach(function(data){
         if(allDist.indexOf(data[1]) === -1){
             allDist.push(data[1]);
@@ -38,12 +34,18 @@ $(document).ready(function(){
                 }
             );
     });
+    let theDistrict = new District("myChart", 1, $("#districts").val(), dataObj);
+    debugger;
+    districtChart = createChart(theDistrict.ctx, theDistrict.calculateData()[0], theDistrict.calculateData()[1]);
+
 });
 
 
 $( "#districts" ).change(function() {
     let district = $(this).val();
     fillCity(district);
+    let theDistrict = new District("myChart", 1, $("#districts").val(), dataObj);
+    removeAndUpdate(districtChart, theDistrict.calculateData()[0], theDistrict.calculateData()[1])
   });
 
   $( "#city" ).change(function() {
@@ -75,27 +77,55 @@ function fillCity(district){
     fillTerrain(district, $('#city').val());
 }
 
-
-function createDummyChart(ctx, data, labels ,name){
-    // var ctx = document.getElementById('myChart').getContext('2d');
+// chart js conf
+function createChart(ctx , mylabels, mydata) {
+    debugger;
     var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: name,
-                data: data,
-                borderWidth: 1
+    type: 'bar',
+    data: {
+        labels: mylabels,
+        datasets: [{
+            label: name,
+            data: mydata,
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
             }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
         }
+    }
+});
+return myChart;
+}
+
+function addData(chart, label, data) {
+    chart.data.labels.push(label);
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.push(data);
     });
+    chart.update();
+}
+
+function removeData(chart) {
+    chart.data.labels.pop();
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.pop();
+    });
+    chart.update();
+}
+
+function removeAndUpdate(chart, newLabel, newData){
+    let len = chart.data.datasets[0].data.length;
+    for(let i= 0; i<len; i++){
+        removeData(chart);
+    }
+    let newLen = newLabel.length;
+    for(let i= 0; i<newLen; i++){
+        addData(chart, newLabel[i], newData[i]);
+    }
 }
