@@ -78,16 +78,26 @@ function fillCity(district){
 }
 
 // chart js conf
+
+function random_rgba() {
+    var o = Math.round, r = Math.random, s = 255;
+    return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ','  + '0.5)';
+}
+
 function createChart(ctx , mylabels, mydata) {
-    debugger;
+    let colors = [];
+    mylabels.forEach(function(elem){
+        colors.push(random_rgba());
+    });
     var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
         labels: mylabels,
         datasets: [{
-            label: name,
+            label: 'İller',
             data: mydata,
-            borderWidth: 1
+            borderWidth: 1,
+            backgroundColor: colors
         }]
     },
     options: {
@@ -97,6 +107,14 @@ function createChart(ctx , mylabels, mydata) {
                     beginAtZero: true
                 }
             }]
+        },
+        legend:{
+            display: false
+        },
+        title:{
+            display: true,
+            position: 'top',
+            text: 'Merkez Günlük Sayaç Okuma Adedi'
         }
     }
 });
